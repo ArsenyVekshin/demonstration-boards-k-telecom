@@ -18,8 +18,13 @@
 #define UP 1
 #define DOWN 0
 
+#define TEMP_CORECT_RES
+#define RESIST_BASE
+#define B_COEF
+#define TEMP_BASE
+
 #define rattle_k 5 //коофицент для защиты от дребезга кнопок
 
 #define BUTTON 0
-#define SONAR 1
+#define TEMPERATURE 1
 
