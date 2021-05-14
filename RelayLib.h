@@ -5,7 +5,7 @@
 class relay
    {
    public:
-      relay(int setSIG, int setT = 1, int setONsig = 1);
+      relay(int setSIG, int setT = 1, int inverse = 0);
 
       void move(int mode);
       void moveTo(int mode);
@@ -14,18 +14,18 @@ class relay
 
       int T;
       int PIN;
-      int ONsig;
+      int inv;
 
    };
 
-relay::relay(int setPIN, int setT = 1, int setONsig = 1)
+relay::relay(int setPIN, int setT = 1, int inverse = 0)
    {
    PIN = setPIN;
 
    pinMode(PIN, OUTPUT);
 
    T = setT;
-   ONsig = setONsig;
+   inv=inverse;
    }
 
 void relay::moveTo(int mode)
@@ -41,12 +41,12 @@ void relay::move(int mode)
 
 void relay::on()
    {
-   digitalWrite(PIN, 1);
+   digitalWrite(PIN, 1 - inv);
    delay(T * 1000);
    }
 
 void relay::off()
    {
-   digitalWrite(PIN, 0);
+   digitalWrite(PIN, 0 + inv);
    delay(T * 1000);
    }

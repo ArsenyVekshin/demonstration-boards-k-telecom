@@ -15,17 +15,12 @@ class sensor
     float read_temp();
 
     int S1;
-    int S2;
     int type;
   };
 sensor::sensor(int setS1, int type=0)
    {
    S1=setS1;
-   S2=setS2;
-
    if (type!=TEMPERATURE){pinMode(S1, INPUT);}
-   
-
    }
 
 int sensor::getState()
@@ -38,11 +33,16 @@ int sensor::getState()
 
 float sensor::read_temp()
   {
-  float t;
-  t = TEMP_CORECT_RES / ((float)1023 / analogRead(S1) - 1);
-  t /= RESIST_BASE;                        // (R/Ro)
-  t = log(t) / B_COEF;            // 1/B * ln(R/Ro)
-  t += (float)1.0 / (TEMP_BASE + 273.15);  // + (1/To)
-  t = (float)1.0 / t - 273.15;    // инвертируем и конвертируем в градусы по Цельсию
-  return t;
+  int t = analogRead( S1 );
+  float tr = 1023.0 / t - 1;
+  float t_cels; //температура в C'
+  tr = RESIST_BASE / tr; //сопротивление термистора
+
+  t_cels = tr / TEMP_CORECT_RES; // (R/Ro)
+  t_cels = log(t_cels); // ln(R/Ro)
+  t_cels /= B_COEF; // 1/B * ln(R/Ro)
+  t_cels += 1.0 / (TEMP_BASE + 273.15); // + (1/To)
+  t_cels = 1.0 / t_cels; // Invert
+  t_cels -= 273.15; 
+  return t_cels;
   }

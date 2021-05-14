@@ -4,11 +4,10 @@
 
 #include "SystemConfig.h"
 #include "RelayLib.h"
+#include "SensorLib.h"
 
-motor M1 (M1_EN,  M1_DIR, M1_STEP, M1_SPEED);
+relay HEATER (HEATER_PIN, 0, 1);
+relay WATER (WATER_PIN, 0);
+relay FAN (COOLER_PIN, 0);
 
-relay PORSHEN (PORSHEN_PIN, PORSHEN_TIME);
-relay ACT (ACT_PIN, ACT_TIME);
-relay COMPRESSOR(COMP_PIN, 1);
-relay ZAMOK(ZAMOK_PIN, 1);
-
+sensor TERM(TERM_PIN, TEMPERATURE);
