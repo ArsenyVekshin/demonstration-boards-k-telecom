@@ -3,8 +3,11 @@
 
 #include "SystemConfig.h"
 
+#define UP 1
+#define DOWN 0
+
 class motor
-  {
+{
   public:
     motor(int setEN, int setDIR, int setSTEP, int setdT, int setONsig = 1);
 
@@ -19,10 +22,10 @@ class motor
     int DIR;
     int STEP;
     int ONsig;
-  };
+};
 
 motor::motor(int setEN, int setDIR, int setSTEP, int setdT, int setONsig = 1)
-  {
+{
   EN = setEN;
   DIR = setDIR;
   STEP = setSTEP;
@@ -37,7 +40,7 @@ motor::motor(int setEN, int setDIR, int setSTEP, int setdT, int setONsig = 1)
   ONsig = setONsig;
 
   stop();
-  }
+}
 
 void motor::begin()
 {
