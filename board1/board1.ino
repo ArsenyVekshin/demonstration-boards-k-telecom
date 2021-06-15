@@ -2,11 +2,8 @@
 #include <NewPing.h>
 #include "SystemConfig.h"
 #include "SYSTEM.h"
-int j=0;
 Servo servo;
 NewPing sonar(SONAR_TRIG, SONAR_ECHO, 200);
-
-
 
 int Get_sonar()
   {
@@ -23,32 +20,17 @@ void Servo_angle(int angle = 0)
   servo.detach();
 }
 
-
-
 void setup()
 {
-  //servo.attach(SER_PIN);
   Serial.begin(9600);
   PORSHEN.off();
   ZAMOK.off();
   ACT.off();
   Servo_angle(60);
-  //ACT.off();
-  //PORSHEN.off();
-  
-  //ZAMOK.on();
-  
-  
-  
-  //delay(1000);
-  
-  delay(1000);
-  //PORSHEN.off();
+  M1.moveTo(100000);
 }
 
 void loop()
 {
- //M1.moveTo(100000);
- Serial.println(LEN_BUT.getState());
  
 }
